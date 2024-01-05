@@ -24,9 +24,9 @@ class ImageList extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Container(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
             child: Image.network(image.url),
-            margin: const EdgeInsets.only(bottom: 20.0),
           ),
           Text(image.title,
               style:
