@@ -7,13 +7,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "logged in",
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Log Me In!!"),
-        ),
-        body: LoginScreen(),
-      ),
-    );
+        title: "logged in",
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("Log Me In!!"),
+          ),
+          body: const LoginScreen(),
+        ));
   }
 }
