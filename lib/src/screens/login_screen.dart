@@ -23,15 +23,18 @@ class LoginScreen extends StatelessWidget {
   Widget emailField() {
     return StreamBuilder(
       stream: bloc.email,
+      // snapshot contains information about the event just
+      // came though the stream
       builder: (context, snapshot) {
         return TextField(
           onChanged: (newValue) {
             bloc.changeEmail(newValue);
           },
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             hintText: "you@example.com",
             labelText: "Email Address",
+            errorText: snapshot.error as String?,
           ),
         );
       },
@@ -39,12 +42,20 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget passwordField() {
-    return const TextField(
-      decoration: InputDecoration(
-        hintText: "Password",
-        labelText: "Password",
-      ),
-    );
+    return StreamBuilder(
+        stream: bloc.password,
+        builder: (context, snapshot) {
+          return TextField(
+            onChanged: (newValue) {
+              bloc.changePassword(newValue);
+            },
+            decoration: InputDecoration(
+              hintText: "Password",
+              labelText: "Password",
+              errorText: snapshot.error as String?,
+            ),
+          );
+        });
   }
 
   Widget submitButton() {
