@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import '../blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -27,6 +31,7 @@ class LoginScreen extends StatelessWidget {
       // came though the stream
       builder: (context, snapshot) {
         return TextField(
+          autofillHints: [AutofillHints.username],
           onChanged: (newValue) {
             bloc.changeEmail(newValue);
           },
@@ -46,6 +51,7 @@ class LoginScreen extends StatelessWidget {
         stream: bloc.password,
         builder: (context, snapshot) {
           return TextField(
+            autofillHints: [AutofillHints.password],
             onChanged: (newValue) {
               bloc.changePassword(newValue);
             },
