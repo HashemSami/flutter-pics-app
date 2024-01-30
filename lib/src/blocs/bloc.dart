@@ -21,4 +21,5 @@ class Bloc with Validators {
   }
 }
 
-final bloc = Bloc();
+// this line will make our block globally available to the whole app
+// final bloc = Bloc();

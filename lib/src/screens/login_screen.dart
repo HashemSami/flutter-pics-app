@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../blocs/bloc.dart';
+import "../blocs/provider.dart";
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -8,32 +8,38 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       margin: const EdgeInsets.all(20.0),
       child: Column(
         children: <Widget>[
-          emailField(),
-          passwordField(),
+          const EmailField(),
+          const PasswordField(),
           Container(
             margin: const EdgeInsets.only(bottom: 30.0),
           ),
-          submitButton(),
+          const SubmitButton(),
         ],
       ),
     );
   }
+}
 
-  Widget emailField() {
+class EmailField extends StatelessWidget {
+  const EmailField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
+
     return StreamBuilder(
-      stream: bloc.email,
+      stream: bloc?.email,
       // snapshot contains information about the event just
       // came though the stream
       builder: (context, snapshot) {
         return TextField(
           autofillHints: [AutofillHints.username],
           onChanged: (newValue) {
-            bloc.changeEmail(newValue);
+            bloc?.changeEmail(newValue);
           },
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
@@ -45,15 +51,22 @@ class LoginScreen extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget passwordField() {
+class PasswordField extends StatelessWidget {
+  const PasswordField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
+
     return StreamBuilder(
-        stream: bloc.password,
+        stream: bloc?.password,
         builder: (context, snapshot) {
           return TextField(
             autofillHints: [AutofillHints.password],
             onChanged: (newValue) {
-              bloc.changePassword(newValue);
+              bloc?.changePassword(newValue);
             },
             decoration: InputDecoration(
               hintText: "Password",
@@ -63,8 +76,13 @@ class LoginScreen extends StatelessWidget {
           );
         });
   }
+}
 
-  Widget submitButton() {
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => {},
       style: ButtonStyle(
