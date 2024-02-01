@@ -83,12 +83,18 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => {},
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-      ),
-      child: const Text("Login"),
-    );
+    final bloc = Provider.of(context);
+
+    return StreamBuilder(
+        stream: bloc?.submitValid,
+        builder: (context, snapshot) {
+          return ElevatedButton(
+            onPressed: snapshot.hasError ? null : () => {},
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            child: const Text("Login"),
+          );
+        });
   }
 }
