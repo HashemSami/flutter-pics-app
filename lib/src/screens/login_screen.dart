@@ -89,7 +89,7 @@ class SubmitButton extends StatelessWidget {
         stream: bloc?.submitValid,
         builder: (context, snapshot) {
           return ElevatedButton(
-            onPressed: snapshot.hasError ? null : () => {},
+            onPressed: !snapshot.hasData ? null : bloc?.submit,
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
